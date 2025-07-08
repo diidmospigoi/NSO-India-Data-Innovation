@@ -39,7 +39,6 @@ This repository contains code and resources for predicting Monthly Per Capita Ex
 │   └── requirements.txt
 ├── testing/                     # Unit and integration tests
 │   ├── test.py
-│   └── dummy_test.py
 ├── src/                         # Source utilities and scripts
 │   ├── topk_features.py
 │   └── data_preparation/
