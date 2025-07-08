@@ -31,7 +31,7 @@ This repository contains code and resources for predicting Monthly Per Capita Ex
 ├── Training_data.csv            # Training dataset (raw)
 ├── models_regressor/            # Saved regressor models
 ├── models_clf/                  # Saved classifier models
-├── frontend/                    # Frontend (FastAPI/Streamlit app, static, templates)
+├── dashboard/                    # Frontend (FastAPI/Streamlit app, static, templates)
 │   ├── app.py
 │   ├── streamlit/
 │   ├── static/
