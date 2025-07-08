@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+jinja2
+pandas
+numpy
+scikit-learn
+joblib
+streamlit
+notebook
+jupyter

@@ -1,0 +1,11 @@
+*.csv
+*.pkl
+*.h5
+*.zip
+*.tar.gz
+models/
+models_regressor/
+models_clf/
+results/
+data/
+images/

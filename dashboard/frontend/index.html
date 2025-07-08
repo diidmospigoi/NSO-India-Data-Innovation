@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome | Household Survey & MPCE Maps</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #e3eafc 0%, #f6fafd 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', 'Inter', 'Segoe UI', Arial, sans-serif !important;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Parallax-inspired floating SVG backgrounds */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.13;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        body::before {
+            top: -120px; left: -120px;
+            width: 480px; height: 480px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="480" height="480" xmlns="http://www.w3.org/2000/svg"><circle cx="240" cy="240" r="220" fill="%23b5c8f7" /></svg>');
+            animation: float1 18s ease-in-out infinite alternate;
+        }
+        body::after {
+            bottom: -100px; right: -100px;
+            width: 340px; height: 340px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="340" height="340" xmlns="http://www.w3.org/2000/svg"><ellipse cx="170" cy="170" rx="160" ry="120" fill="%23f6fafd" /></svg>');
+            animation: float2 22s ease-in-out infinite alternate;
+        }
+        @keyframes float1 {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(40px) scale(1.08);}
+        }
+        @keyframes float2 {
+            0% { transform: translateY(0) scale(1);}
+            100% { transform: translateY(-30px) scale(1.04);}
+        }
+        .landing-container {
+            background: rgba(255,255,255,0.97);
+            border-radius: 36px;
+            box-shadow: 0 12px 48px rgba(74,144,226,0.18), 0 2px 8px rgba(74,144,226,0.10);
+            padding: 64px 44px 44px 44px;
+            max-width: 520px;
+            width: 98vw;
+            text-align: center;
+            animation: bounceIn 0.8s;
+            position: relative;
+            z-index: 1;
+            transition: box-shadow 0.4s cubic-bezier(.4,2,.6,1), background 0.4s;
+            overflow: visible;
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(-60px);}
+            60% { opacity: 1; transform: scale(1.08) translateY(10px);}
+            80% { transform: scale(0.97) translateY(-4px);}
+            100% { opacity: 1; transform: scale(1) translateY(0);}
+        }
+        .landing-title {
+            font-size: 2.7rem;
+            font-weight: 900;
+            color: #1a2a3a;
+            margin-bottom: 18px;
+            letter-spacing: 1.7px;
+            text-shadow: 0 2px 12px #e3eafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transition: color 0.3s;
+            background: linear-gradient(90deg, #e3eafc 0%, #f6fafd 100%);
+            border-radius: 18px;
+            padding: 18px 0 12px 0;
+            box-shadow: 0 2px 8px #e3eafc;
+        }
+        .landing-title .emoji {
+            font-size: 2.5rem;
+            animation: emojiWave 1.5s infinite alternate;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        @keyframes emojiWave {
+            0% { transform: rotate(-10deg);}
+            100% { transform: rotate(15deg);}
+        }
+        .landing-desc {
+            font-size: 1.22rem;
+            color: #333;
+            margin-bottom: 36px;
+            font-weight: 500;
+            line-height: 1.6;
+            transition: color 0.3s;
+            background: linear-gradient(90deg, #f6fafd 0%, #e3eafc 100%);
+            border-radius: 12px;
+            padding: 14px 0;
+            box-shadow: 0 1px 4px #e3eafc;
+        }
+        .landing-btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            margin-top: 18px;
+        }
+        .landing-btn {
+            font-size: 1.22rem;
+            font-weight: 800;
+            padding: 20px 0;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(90deg, #2196f3 0%, #0072ff 100%);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #e3eafc;
+            transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+            width: 100%;
+            letter-spacing: 1.2px;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing-btn .btn-emoji {
+            margin-right: 12px;
+            font-size: 1.35em;
+            vertical-align: middle;
+            animation: bounceBtn 1.2s infinite alternate;
+            transition: transform 0.2s;
+        }
+        @keyframes bounceBtn {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-6px);}
+        }
+        .landing-btn:hover {
+            background: linear-gradient(90deg, #0072ff 0%, #2196f3 100%);
+            transform: scale(1.06);
+            box-shadow: 0 6px 24px #b5c8f7;
+        }
+        .landing-btn.fun {
+            background: linear-gradient(90deg,#1a2a3a 60%,#4a90e2 100%);
+        }
+        .landing-btn.fun:hover {
+            background: linear-gradient(90deg,#4a90e2 0%,#1a2a3a 100%);
+        }
+        .landing-or {
+            margin: 0 0 0 0;
+            font-size: 1.13rem;
+            color: #888;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            position: relative;
+        }
+        .landing-or:before, .landing-or:after {
+            content: "";
+            display: inline-block;
+            width: 44px;
+            height: 2px;
+            background: #e3eafc;
+            vertical-align: middle;
+            margin: 0 12px;
+            border-radius: 2px;
+        }
+        .fun-fact {
+            margin-top: 38px;
+            font-size: 1.09rem;
+            color: #0078d7;
+            background: #f6fafd;
+            border-radius: 14px;
+            padding: 16px 22px;
+            box-shadow: 0 1px 8px #e3eafc;
+            font-weight: 700;
+            animation: fadeInUp 1.2s;
+            transition: background 0.3s, color 0.3s;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .confetti {
+            position: absolute;
+            top: 0; left: 0; 
+            width: 100%; 
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+        /* Decorative SVG accent */
+        .landing-container::after {
+            content: '';
+            position: absolute;
+            right: -40px; top: -40px;
+            width: 120px; height: 120px;
+            background-image: url('data:image/svg+xml;utf8,<svg width="120" height="120" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="20" width="80" height="80" rx="28" fill="%23e3eafc" /></svg>');
+            opacity: 0.12;
+            z-index: 0;
+            pointer-events: none;
+            animation: float2 12s ease-in-out infinite alternate;
+        }
+        @media (max-width: 600px) {
+            .landing-container { padding: 18px 2vw 18px 2vw; }
+            .landing-title { font-size: 1.5rem; }
+            .landing-desc { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <canvas class="confetti" id="confettiCanvas"></canvas>
+        <div class="landing-title">
+            <span class="emoji">📝</span> ML Based MPCE Projections and Insights<span class="emoji">📊</span>
+        </div>
+        <!-- <div class="landing-desc">
+            <span style="font-size:1em;">👋</span> Ready to explore household data or see statewise MPCE maps?<br>
+        </div> -->
+        <div class="landing-btn-group">
+            <form action="mpce-survey-form.html">
+                <button type="submit" class="landing-btn"><span class="btn-emoji">📝</span>Predict MPCE at Household Level</button>
+            </form>
+            <div class="landing-or">or</div>
+            <form action="mpce-maps.html">
+                <button type="submit" class="landing-btn fun"><span class="btn-emoji">🗺️</span>Predict MPCE at State Level</button>
+            </form>
+        </div>
+        <div class="fun-fact" id="funFact">
+        </div>
+    </div>
+    <script>
+    // Fun facts for a playful touch
+    const facts = [
+        "Did you know? 🧐 The highest MPCE in India is over 5x the lowest! 📈",
+        "Filling this survey helps us understand real household needs. 💡🏠",
+        "You can compare Rural vs Urban MPCE with just a click! 🏡🏙️",
+        "Try the maps for a colorful view of India's diversity. 🌈🗺️",
+        "Your data stays private and helps research. 🔒📊",
+        "Every state tells a different story. Explore them all! 📚🇮🇳",
+        "Fun fact: The average Indian household size is 4.8 people. 👨‍👩‍👧‍👦",
+        "MPCE = Monthly Per Capita Expenditure. Now you know! 😉💸",
+        "Urban households typically spend more on education and transport. 🏙️🎒🚌",
+        "Rural MPCE is growing faster than ever before in some regions. 🌾🚀",
+        "Did you know? 🍚 Food accounts for over 45% of rural MPCE.",
+        "The NSSO conducts large-scale surveys to estimate MPCE in India. 📋🇮🇳",
+        "Your participation helps improve policy decisions for millions. 🙌📈",
+        "MPCE helps measure living standards across different regions. 📏🌍",
+        "India's diversity is reflected in its spending patterns! 🇮🇳💰"
+    ];
+    document.getElementById('funFact').textContent = facts[Math.floor(Math.random() * facts.length)];
+
+    // Simple confetti effect for fun
+    function confettiBurst() {
+        const canvas = document.getElementById('confettiCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const container = canvas.parentElement;
+        const W = canvas.width = container.offsetWidth;
+        const H = canvas.height = container.offsetHeight;
+        const colors = ['#0078d7','#ffb300','#e91e63','#4caf50','#ff5722','#00bcd4','#b5c8f7','#f6fafd'];
+        let confs = [];
+        let animationId;
+        let startTime = Date.now();
+        
+        for(let i=0;i<32;i++){
+            confs.push({
+                x: Math.random()*W,
+                y: Math.random()*H/2,
+                r: Math.random()*8+4,
+                d: Math.random()*40+10,
+                color: colors[Math.floor(Math.random()*colors.length)],
+                tilt: Math.random()*10-5
+            });
+        }
+        let angle = 0;
+        function draw() {
+            // Stop after 5 seconds
+            if (Date.now() - startTime > 5000) {
+                ctx.clearRect(0,0,W,H);
+                cancelAnimationFrame(animationId);
+                return;
+            }
+            
+            ctx.clearRect(0,0,W,H);
+            angle += 0.01;
+            for(let i=0;i<confs.length;i++){
+                let c = confs[i];
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, c.r, 0, 2*Math.PI);
+                ctx.fillStyle = c.color;
+                ctx.fill();
+                c.y += Math.cos(angle+c.d) + 1 + c.r/4;
+                c.x += Math.sin(angle) * 2;
+                if(c.y > H){
+                    c.x = Math.random()*W;
+                    c.y = -10;
+                }
+            }
+            animationId = requestAnimationFrame(draw);
+        }
+        draw();
+    }
+    window.onload = confettiBurst;
+    </script>
+</body>
+</html>
